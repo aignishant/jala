@@ -1,0 +1,32 @@
+[project]
+name = "jala"
+version = "0.1.0"
+description = "152-day computer-networking curriculum: a network stack built from the wire up, on a virtual internet of Linux network namespaces."
+requires-python = "==3.12.*"
+# No runtime dependencies yet, and that is the point. Packages are added on the day they
+# are first used and only after the hand-rolled version exists (P3). scapy, dnspython and
+# cryptography each arrive on a named day, with a dated row in docs/PACKAGES.md.
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff==0.16.6",
+    "pytest==9.1.1",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# days/*/lab is the learner's own scratch code. It is theirs to get wrong.
+extend-exclude = ["days/*/lab"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers"
+testpaths = ["tests"]
+markers = [
+    "root: needs a namespace, a TUN device or a raw socket - excluded from the default gate",
+    "slow: takes more than a few seconds",
+]

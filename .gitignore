@@ -1,0 +1,29 @@
+# --- keys and secrets: never, under any circumstances (P9) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+keys/
+
+# --- captures: the repo holds what REPRODUCES a capture, never the capture (P9) ---
+# A pcap of your own lab contains your own traffic. A pcap of anything else contains
+# somebody else's. docs/CAPTURES.md carries the provenance; the bytes stay on disk.
+captures/
+*.pcap
+*.pcapng
+*.cap
+
+# --- environments and caches: a tool made them, a tool can remake them ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# --- generated ---
+docs/generated/
+dist/
+build/
